@@ -1,0 +1,43 @@
+# BTAudit Docker Compose
+# Made by Monish Paramasivam
+#
+# Usage:
+#   docker compose up dashboard        # Start the web dashboard
+#   docker compose run scan            # Run a single scan
+#
+# IMPORTANT: Set environment variables before running:
+#   export BTAUDIT_AUTHORIZED=1
+#   export BTAUDIT_AUTHORIZED_BY="Your Name"
+#   export BTAUDIT_ENVIRONMENT="Description of authorized environment"
+
+version: "3.9"
+
+x-btaudit-base: &btaudit-base
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile
+  network_mode: host
+  privileged: true          # Required for Bluetooth hardware access
+  volumes:
+    - ./reports:/app/reports
+  environment:
+    - BTAUDIT_AUTHORIZED=${BTAUDIT_AUTHORIZED:-}
+    - BTAUDIT_AUTHORIZED_BY=${BTAUDIT_AUTHORIZED_BY:-}
+    - BTAUDIT_ENVIRONMENT=${BTAUDIT_ENVIRONMENT:-}
+
+services:
+  scan:
+    <<: *btaudit-base
+    command: >
+      scan
+      --non-interactive
+      --duration 30
+      --output /app/reports
+      --format all
+
+  dashboard:
+    <<: *btaudit-base
+    command: dashboard --host 0.0.0.0 --port 8080
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

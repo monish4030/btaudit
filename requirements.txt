@@ -1,0 +1,18 @@
+# BTAudit - Core Requirements
+# Made by Monish Paramasivam
+# Install: pip3 install -r requirements.txt
+
+bleak>=0.21.1
+click>=8.1.7
+
+# Optional: Web dashboard
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+
+# Optional: Bluetooth Classic (Linux)
+# pybluez2>=0.46   # Uncomment if needed for Classic BT on older kernels
+
+# Dev/Testing
+pytest>=8.1.1
+pytest-asyncio>=0.23.6
+pytest-cov>=5.0.0
