@@ -50,7 +50,7 @@ That's it. Reports are saved to `./reports/`.
 If you just want to try it immediately without `sudo ./install.sh`:
 
 ```bash
-git clone https://github.com/monishparamasivam/btaudit.git
+git clone https://github.com/monish4030/btaudit.git
 cd btaudit
 
 # Install Python deps only
