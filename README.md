@@ -30,7 +30,7 @@ It **never** connects, pairs, injects packets, or exploits anything.
 
 ```bash
 # 1. Clone
-git clone https://github.com/monishparamasivam/btaudit.git
+git clone https://github.com/monish4030/btaudit.git
 cd btaudit
 
 # 2. Install (requires root for Bluetooth hardware access)
